@@ -1,0 +1,640 @@
+{
+  "2": {
+    "inputs": {
+      "bbox_threshold": 0.7,
+      "bbox_dilation": 3,
+      "crop_factor": 2,
+      "drop_size": 10,
+      "sub_threshold": 0.8,
+      "sub_dilation": 0,
+      "sub_bbox_expansion": 1,
+      "sam_mask_hint_threshold": 0.5,
+      "post_dilation": 3,
+      "bbox_detector": [
+        "4",
+        0
+      ],
+      "image": [
+        "69",
+        0
+      ]
+    },
+    "class_type": "ImpactSimpleDetectorSEGS",
+    "_meta": {
+      "title": "Simple Detector (SEGS)"
+    }
+  },
+  "4": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "8": {
+    "inputs": {
+      "image": "s5 (1).png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "body ref"
+    }
+  },
+  "13": {
+    "inputs": {
+      "feather": 10,
+      "alpha": 255,
+      "image": [
+        "69",
+        0
+      ],
+      "segs": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "SEGSPaste",
+    "_meta": {
+      "title": "SEGSPaste"
+    }
+  },
+  "21": {
+    "inputs": {
+      "segs": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "ImpactDecomposeSEGS",
+    "_meta": {
+      "title": "Decompose (SEGS)"
+    }
+  },
+  "22": {
+    "inputs": {
+      "seg_header": [
+        "21",
+        0
+      ],
+      "seg_elt": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "ImpactAssembleSEGS",
+    "_meta": {
+      "title": "Assemble (SEGS)"
+    }
+  },
+  "24": {
+    "inputs": {
+      "seg_elt": [
+        "25",
+        0
+      ],
+      "cropped_image_opt": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "ImpactEdit_SEG_ELT",
+    "_meta": {
+      "title": "Edit SEG_ELT"
+    }
+  },
+  "25": {
+    "inputs": {
+      "seg_elt": [
+        "21",
+        1
+      ]
+    },
+    "class_type": "ImpactFrom_SEG_ELT",
+    "_meta": {
+      "title": "From SEG_ELT"
+    }
+  },
+  "33": {
+    "inputs": {
+      "enabled": true,
+      "swap_model": "inswapper_128.onnx",
+      "facedetection": "YOLOv5l",
+      "face_restore_model": "codeformer-v0.1.0.pth",
+      "face_restore_visibility": 0.8,
+      "codeformer_weight": 0.8,
+      "detect_gender_input": "no",
+      "detect_gender_source": "no",
+      "input_faces_index": "0",
+      "source_faces_index": "0",
+      "console_log_level": 2,
+      "input_image": [
+        "36",
+        0
+      ],
+      "source_image": [
+        "60",
+        0
+      ]
+    },
+    "class_type": "ReActorFaceSwap",
+    "_meta": {
+      "title": "ReActor 🌌 Fast Face Swap"
+    }
+  },
+  "34": {
+    "inputs": {
+      "image": "s5.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Face reference"
+    }
+  },
+  "36": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "megapixels": 1,
+      "image": [
+        "25",
+        1
+      ]
+    },
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "ImageScaleToTotalPixels"
+    }
+  },
+  "37": {
+    "inputs": {
+      "image": [
+        "25",
+        1
+      ]
+    },
+    "class_type": "GetImageSize",
+    "_meta": {
+      "title": "Get Image Size"
+    }
+  },
+  "38": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "width": [
+        "37",
+        0
+      ],
+      "height": [
+        "37",
+        1
+      ],
+      "crop": "disabled",
+      "image": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "39": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "118",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "FINAL output"
+    }
+  },
+  "42": {
+    "inputs": {
+      "sharpen_radius": 1,
+      "sigma": 0.4,
+      "alpha": 1,
+      "image": [
+        "96",
+        0
+      ]
+    },
+    "class_type": "ImageSharpen",
+    "_meta": {
+      "title": "ImageSharpen"
+    }
+  },
+  "44": {
+    "inputs": {
+      "model_name": "codeformer-v0.1.0.pth"
+    },
+    "class_type": "FaceRestoreModelLoader",
+    "_meta": {
+      "title": "FaceRestoreModelLoader"
+    }
+  },
+  "45": {
+    "inputs": {
+      "image": "1*x0OnDRKuNzbaxfhQBMJVbw.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "POSE/addtional"
+    }
+  },
+  "46": {
+    "inputs": {
+      "image": "Tumblr_Stripe_Pant_Women_244408_P_Packshot1.webp"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "garment"
+    }
+  },
+  "48": {
+    "inputs": {
+      "image": "Tumblr_Stripe_Pant_Women_244408_M_Front2.webp"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "garment"
+    }
+  },
+  "51": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "spacing_width": 0,
+      "spacing_color": "white",
+      "image1": [
+        "60",
+        0
+      ],
+      "image2": [
+        "61",
+        0
+      ]
+    },
+    "class_type": "ImageStitch",
+    "_meta": {
+      "title": "person"
+    }
+  },
+  "52": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "spacing_width": 0,
+      "spacing_color": "white",
+      "image1": [
+        "46",
+        0
+      ],
+      "image2": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "ImageStitch",
+    "_meta": {
+      "title": "garments 2"
+    }
+  },
+  "53": {
+    "inputs": {
+      "direction": "up",
+      "match_image_size": true,
+      "spacing_width": 0,
+      "spacing_color": "white",
+      "image1": [
+        "127",
+        0
+      ],
+      "image2": [
+        "52",
+        0
+      ]
+    },
+    "class_type": "ImageStitch",
+    "_meta": {
+      "title": "combine garment and person"
+    }
+  },
+  "54": {
+    "inputs": {
+      "direction": "left",
+      "match_image_size": true,
+      "spacing_width": 0,
+      "spacing_color": "white",
+      "image1": [
+        "53",
+        0
+      ],
+      "image2": [
+        "124",
+        0
+      ]
+    },
+    "class_type": "ImageStitch",
+    "_meta": {
+      "title": "main combine"
+    }
+  },
+  "57": {
+    "inputs": {
+      "width": 1500,
+      "height": 1500,
+      "upscale_method": "nearest-exact",
+      "keep_proportion": "pad_edge",
+      "pad_color": "255255255",
+      "crop_position": "right",
+      "divisible_by": 2,
+      "device": "cpu",
+      "image": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "59": {
+    "inputs": {
+      "width": 1500,
+      "height": 1500,
+      "upscale_method": "nearest-exact",
+      "keep_proportion": "pad",
+      "pad_color": "255255255",
+      "crop_position": "center",
+      "divisible_by": 2,
+      "device": "cpu",
+      "image": [
+        "48",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "60": {
+    "inputs": {
+      "width": 1500,
+      "height": 1500,
+      "upscale_method": "nearest-exact",
+      "keep_proportion": "resize",
+      "pad_color": "1",
+      "crop_position": "center",
+      "divisible_by": 2,
+      "device": "cpu",
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "61": {
+    "inputs": {
+      "width": 1500,
+      "height": 1500,
+      "upscale_method": "nearest-exact",
+      "keep_proportion": "pad",
+      "pad_color": "1",
+      "crop_position": "center",
+      "divisible_by": 2,
+      "device": "cpu",
+      "image": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "62": {
+    "inputs": {
+      "width": 1500,
+      "height": 1500,
+      "upscale_method": "nearest-exact",
+      "keep_proportion": "pad",
+      "pad_color": "1",
+      "crop_position": "center",
+      "divisible_by": 2,
+      "device": "cpu",
+      "image": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "69": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 2,
+      "image": [
+        "133",
+        0
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "Upscale Image By"
+    }
+  },
+  "96": {
+    "inputs": {
+      "upscale_model": "1x-ITF-SkinDiffDetail-Lite-v1.pth",
+      "mode": "rescale",
+      "rescale_factor": 2,
+      "resize_width": 1024,
+      "resampling_method": "lanczos",
+      "supersample": "true",
+      "rounding_modulus": 8,
+      "image": [
+        "128",
+        0
+      ]
+    },
+    "class_type": "CR Upscale Image",
+    "_meta": {
+      "title": "🔍 CR Upscale Image"
+    }
+  },
+  "118": {
+    "inputs": {
+      "scale_by": 0.4,
+      "images": [
+        "119",
+        0
+      ]
+    },
+    "class_type": "ImageScaleDownBy",
+    "_meta": {
+      "title": "Scale Down By"
+    }
+  },
+  "119": {
+    "inputs": {
+      "sharpen_radius": 1,
+      "sigma": 0.5,
+      "alpha": 1,
+      "image": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "ImageSharpen",
+    "_meta": {
+      "title": "ImageSharpen"
+    }
+  },
+  "121": {
+    "inputs": {
+      "image": "Fairlee_Sweat_Women_240508_P_Packshot1.webp"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "garment"
+    }
+  },
+  "123": {
+    "inputs": {
+      "width": 1500,
+      "height": 1500,
+      "upscale_method": "nearest-exact",
+      "keep_proportion": "pad_edge",
+      "pad_color": "255255255",
+      "crop_position": "right",
+      "divisible_by": 2,
+      "device": "cpu",
+      "image": [
+        "121",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "124": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "spacing_width": 0,
+      "spacing_color": "white",
+      "image1": [
+        "57",
+        0
+      ],
+      "image2": [
+        "123",
+        0
+      ]
+    },
+    "class_type": "ImageStitch",
+    "_meta": {
+      "title": "garments"
+    }
+  },
+  "125": {
+    "inputs": {
+      "image": "Pantone.7542C.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "additional"
+    }
+  },
+  "126": {
+    "inputs": {
+      "width": 1500,
+      "height": 1500,
+      "upscale_method": "nearest-exact",
+      "keep_proportion": "resize",
+      "pad_color": "1",
+      "crop_position": "center",
+      "divisible_by": 2,
+      "device": "cpu",
+      "image": [
+        "125",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "Resize Image v2"
+    }
+  },
+  "127": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "spacing_width": 0,
+      "spacing_color": "white",
+      "image1": [
+        "51",
+        0
+      ],
+      "image2": [
+        "126",
+        0
+      ]
+    },
+    "class_type": "ImageStitch",
+    "_meta": {
+      "title": "person"
+    }
+  },
+  "128": {
+    "inputs": {
+      "intensity": 0.08,
+      "scale": 10,
+      "temperature": 0,
+      "vignette": 0,
+      "image": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "FilmGrain",
+    "_meta": {
+      "title": "Film Grain Effect"
+    }
+  },
+  "133": {
+    "inputs": {
+      "prompt": "make this blond woman weat this skii pants, longsleeve and black boots on a white background, in this pose with hands behind head\n\n\n\n",
+      "model": "gemini-3-pro-image-preview",
+      "seed": 376544707406991,
+      "aspect_ratio": "3:4",
+      "resolution": "2K",
+      "response_modalities": "IMAGE+TEXT",
+      "images": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "GeminiImage2Node",
+    "_meta": {
+      "title": "Nano Banana Pro (Google Gemini Image)"
+    }
+  }
+}
